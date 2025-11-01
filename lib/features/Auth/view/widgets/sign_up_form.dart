@@ -1,3 +1,4 @@
+import 'package:client_/theme/app_pallet.dart';
 import 'package:client_/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,6 @@ class _SignUpFormState extends State<SignUpForm> {
   final _confirmPasswordController = TextEditingController();
   bool _obscurePassword = true;
 
-
   @override
   void dispose() {
     _nameController.dispose();
@@ -28,121 +28,132 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Name',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'Name',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Pallete.whiteColor,
+                ),
               ),
-            ),
-            SizedBox(height: 3),
-            TextFormField(
-              controller: _nameController,
-              textCapitalization: TextCapitalization.words,
-              decoration: InputDecoration(
-                hintText: 'Joe Adams',
-                hintStyle: TextStyle(fontSize: 14),
-                suffixIcon: Icon(Icons.person, color: Colors.grey.shade600),
-                enabledBorder: AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
-                focusedBorder: AppTheme.darkThemeMode.inputDecorationTheme.focusedBorder,
+              SizedBox(height: 3),
+              TextFormField(
+                controller: _nameController,
+                textCapitalization: TextCapitalization.words,
+                decoration: InputDecoration(
+                  hintText: 'Joe Adams',
+                  hintStyle: TextStyle(fontSize: 14, color: Pallete.geryGradiant1),
+                  suffixIcon: Icon(Icons.person, color: Pallete.geryGradiant2),
+                  enabledBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
+                  focusedBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.focusedBorder,
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your name';
+                  }
+                  if (value.trim().length < 2) {
+                    return 'Name must be at least 2 characters';
+                  }
+                  return null;
+                },
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your name';
-                }
-                if (value.trim().length < 2) {
-                  return 'Name must be at least 2 characters';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Email',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+              const SizedBox(height: 16),
+              Text(
+                'Email',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Pallete.whiteColor,
+                ),
               ),
-            ),
-            SizedBox(height: 3),
-            TextFormField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                hintText: 'Joe@gmail.com',
-                hintStyle: TextStyle(fontSize: 14),
-                suffixIcon: Icon(Icons.email, color: Colors.grey.shade600),
-                enabledBorder: AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
-                focusedBorder: AppTheme.darkThemeMode.inputDecorationTheme.focusedBorder,
+              SizedBox(height: 3),
+              TextFormField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  hintText: 'Joe@gmail.com',
+                  hintStyle: TextStyle(fontSize: 14, color: Pallete.geryGradiant1),
+                  suffixIcon: Icon(Icons.email, color: Pallete.geryGradiant2),
+                  enabledBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
+                  focusedBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.focusedBorder,
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  if (!value.contains('@')) {
+                    return 'Please enter a valid email';
+                  }
+                  return null;
+                },
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
-                }
-                if (!value.contains('@')) {
-                  return 'Please enter a valid email';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Password',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+              const SizedBox(height: 16),
+              Text(
+                'Password',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Pallete.whiteColor,
+                ),
               ),
-            ),
-            SizedBox(height: 3),
-            TextFormField(
-              controller: _passwordController,
-              obscureText: _obscurePassword,
-              decoration: InputDecoration(
-                hintText: 'password',
-                hintStyle: TextStyle(fontSize: 14),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    _obscurePassword ? Icons.visibility : Icons.visibility_off,
-                    color: Colors.grey.shade600,
+              SizedBox(height: 3),
+              TextFormField(
+                controller: _passwordController,
+                obscureText: _obscurePassword,
+                decoration: InputDecoration(
+                  hintText: 'password',
+                  hintStyle: TextStyle(fontSize: 14, color: Pallete.geryGradiant1),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Pallete.geryGradiant2,
+                    ),
+                    onPressed: () =>
+                        setState(() => _obscurePassword = !_obscurePassword),
                   ),
-                  onPressed: () =>
-                      setState(() => _obscurePassword = !_obscurePassword),
+                  enabledBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
+                  focusedBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.focusedBorder,
                 ),
-                enabledBorder: AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
-                focusedBorder: AppTheme.darkThemeMode.inputDecorationTheme.focusedBorder,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  if (value.length < 6) {
+                    return 'Password must be at least 6 characters';
+                  }
+                  return null;
+                },
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your password';
-                }
-                if (value.length < 6) {
-                  return 'Password must be at least 6 characters';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(height: 35),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
+              const SizedBox(height: 35),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Pallete.geryGradiant2,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+                child: const Text(
+                  'Sign Up',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Pallete.backgroundColor),
                 ),
               ),
-              child: const Text(
-                'Sign Up',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -44,7 +44,7 @@ class _AuthScreenState extends State<AuthScreen>
                 children: [
                   Center(
                     child: Text(
-                      'Music Player',
+                      'Nothing Music',
                       style: Theme.of(context).textTheme.headlineLarge
                           ?.copyWith(
                             color: Pallete.gradient1,
@@ -88,19 +88,19 @@ class _AuthScreenState extends State<AuthScreen>
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Container(
-                      color: Pallete.backgroundColor,
+                      decoration: BoxDecoration(color: Pallete.geryGradiant2, borderRadius: BorderRadius.circular(12)),
                       child: TabBar(
+                        overlayColor: WidgetStatePropertyAll(Pallete.backgroundColor),
                         controller: _tabController,
                         indicator: BoxDecoration(
                           color: Pallete.geryGradiant3,
-                          gradient: LinearGradient(colors: [Pallete.geryGradiant2, Pallete.geryGradiant3]),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         dividerColor: Pallete.backgroundColor,
                         indicatorSize: TabBarIndicatorSize.tab,
                         labelColor: Pallete.gradient1,
                         labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                        unselectedLabelColor: Pallete.whiteColor,
+                        unselectedLabelColor: Pallete.backgroundColor,
                         tabs: const [
                           Tab(text: 'Sign In'),
                           Tab(text: 'Sign Up'),
