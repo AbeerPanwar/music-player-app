@@ -17,4 +17,5 @@ class AppTheme {
       backgroundColor: Pallete.backgroundColor,
     ),
   );
+  static final font = ThemeData(fontFamily: 'Zain');
 }

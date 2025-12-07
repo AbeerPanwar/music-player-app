@@ -37,6 +37,7 @@ class _SignInFormState extends State<SignInForm> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Pallete.whiteColor,
+                  fontFamily: 'Zain',
                 ),
               ),
               SizedBox(height: 3),
@@ -45,7 +46,11 @@ class _SignInFormState extends State<SignInForm> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'Joe@gmail.com',
-                  hintStyle: TextStyle(fontSize: 14, color: Pallete.geryGradiant1),
+                  hintStyle: TextStyle(
+                    fontSize: 14,
+                    color: Pallete.geryGradiant1,
+                    fontFamily: 'Zain',
+                  ),
                   suffixIcon: Icon(Icons.email, color: Pallete.geryGradiant2),
                   enabledBorder:
                       AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
@@ -68,6 +73,7 @@ class _SignInFormState extends State<SignInForm> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Pallete.whiteColor,
+                  fontFamily: 'Zain',
                 ),
               ),
               SizedBox(height: 3),
@@ -76,7 +82,11 @@ class _SignInFormState extends State<SignInForm> {
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   hintText: 'password',
-                  hintStyle: TextStyle(fontSize: 14, color: Pallete.geryGradiant1),
+                  hintStyle: TextStyle(
+                    fontSize: 14,
+                    color: Pallete.geryGradiant1,
+                    fontFamily: 'Zain',
+                  ),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword
@@ -114,7 +124,12 @@ class _SignInFormState extends State<SignInForm> {
                 ),
                 child: const Text(
                   'Sign In',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Pallete.backgroundColor),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Pallete.backgroundColor,
+                    fontFamily: 'Zain',
+                  ),
                 ),
               ),
             ],

@@ -49,6 +49,7 @@ class _AuthScreenState extends State<AuthScreen>
                           ?.copyWith(
                             color: Pallete.gradient1,
                             fontWeight: FontWeight.bold,
+                            fontFamily: 'Zain',
                           ),
                     ),
                   ),
@@ -58,16 +59,18 @@ class _AuthScreenState extends State<AuthScreen>
                       'Enjoy music — Anytime, Anywhere',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: Pallete.whiteColor,
+                        fontFamily: 'Zain',
                       ),
                     ),
                   ),
                   const SizedBox(height: 32),
                   Text(
-                    _tabController.index == 0 ?'Welcome' : 'Sign Up',
+                    _tabController.index == 0 ? 'Welcome' : 'Sign Up',
                     style: TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.bold,
                       color: Pallete.geryGradiant1,
+                      fontFamily: 'Zain',
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -79,27 +82,33 @@ class _AuthScreenState extends State<AuthScreen>
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
                       color: Pallete.geryGradiant2,
+                      fontFamily: 'Zain',
                     ),
                   ),
                   const SizedBox(height: 12),
                   Container(
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.primaryContainer,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     child: Container(
-                      decoration: BoxDecoration(color: Pallete.geryGradiant2, borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(
+                        color: Pallete.geryGradiant2,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       child: TabBar(
-                        overlayColor: WidgetStatePropertyAll(Pallete.backgroundColor),
+                        overlayColor: WidgetStatePropertyAll(
+                          Pallete.backgroundColor,
+                        ),
                         controller: _tabController,
                         indicator: BoxDecoration(
                           color: Pallete.geryGradiant3,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         dividerColor: Pallete.backgroundColor,
                         indicatorSize: TabBarIndicatorSize.tab,
                         labelColor: Pallete.gradient1,
-                        labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                        labelStyle: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Zain',),
                         unselectedLabelColor: Pallete.backgroundColor,
                         tabs: const [
                           Tab(text: 'Sign In'),

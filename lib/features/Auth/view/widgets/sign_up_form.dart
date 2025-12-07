@@ -41,6 +41,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Pallete.whiteColor,
+                  fontFamily: 'Zain',
                 ),
               ),
               SizedBox(height: 3),
@@ -49,7 +50,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
                   hintText: 'Joe Adams',
-                  hintStyle: TextStyle(fontSize: 14, color: Pallete.geryGradiant1),
+                  hintStyle: TextStyle(
+                    fontSize: 14,
+                    color: Pallete.geryGradiant1,
+                    fontFamily: 'Zain',
+                  ),
                   suffixIcon: Icon(Icons.person, color: Pallete.geryGradiant2),
                   enabledBorder:
                       AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
@@ -72,6 +77,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Pallete.whiteColor,
+                  fontFamily: 'Zain',
                 ),
               ),
               SizedBox(height: 3),
@@ -80,7 +86,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'Joe@gmail.com',
-                  hintStyle: TextStyle(fontSize: 14, color: Pallete.geryGradiant1),
+                  hintStyle: TextStyle(
+                    fontSize: 14,
+                    color: Pallete.geryGradiant1,
+                    fontFamily: 'Zain',
+                  ),
                   suffixIcon: Icon(Icons.email, color: Pallete.geryGradiant2),
                   enabledBorder:
                       AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
@@ -103,6 +113,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Pallete.whiteColor,
+                  fontFamily: 'Zain',
                 ),
               ),
               SizedBox(height: 3),
@@ -111,7 +122,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   hintText: 'password',
-                  hintStyle: TextStyle(fontSize: 14, color: Pallete.geryGradiant1),
+                  hintStyle: TextStyle(
+                    fontSize: 14,
+                    color: Pallete.geryGradiant1,
+                    fontFamily: 'Zain',
+                  ),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword
@@ -149,7 +164,12 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
                 child: const Text(
                   'Sign Up',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Pallete.backgroundColor),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Pallete.backgroundColor,
+                    fontFamily: 'Zain',
+                  ),
                 ),
               ),
             ],
