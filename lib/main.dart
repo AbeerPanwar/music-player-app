@@ -1,4 +1,4 @@
-import 'package:client_/features/Auth/view/pages/auth_page.dart';
+import 'package:client_/features/splashscreen/splash_screen.dart';
 import 'package:client_/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Nothing Music',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkThemeMode,
-      home: const AuthScreen(),
+      home: const SplashScreen(),
     );
   }
 }
