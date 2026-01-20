@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    Future.delayed(Duration(microseconds: 200), () {
+    Future.delayed(Duration(microseconds: 400), () {
       setState(() {
         _isDotCenter = !_isDotCenter;
       });
@@ -79,7 +79,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             AnimatedPositioned(
               duration: Duration(milliseconds: 500),
-              curve: Cubic(0.68, -1.2, 0.265, 1),
+              curve: Cubic(0.8, -1.2, 0.265, 1),
               left:
                   (MediaQuery.of(context).size.width / 2) -
                   12 -

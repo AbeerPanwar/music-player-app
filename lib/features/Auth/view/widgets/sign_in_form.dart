@@ -52,6 +52,10 @@ class _SignInFormState extends State<SignInForm> {
                     fontFamily: 'Zain',
                   ),
                   suffixIcon: Icon(Icons.email, color: Pallete.geryGradiant2),
+                  errorBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
+                  focusedErrorBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
                   enabledBorder:
                       AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
                   focusedBorder:
@@ -97,6 +101,10 @@ class _SignInFormState extends State<SignInForm> {
                     onPressed: () =>
                         setState(() => _obscurePassword = !_obscurePassword),
                   ),
+                  errorBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
+                  focusedErrorBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
                   enabledBorder:
                       AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
                   focusedBorder:
@@ -114,7 +122,9 @@ class _SignInFormState extends State<SignInForm> {
               ),
               const SizedBox(height: 35),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {}
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Pallete.geryGradiant2,
                   padding: const EdgeInsets.symmetric(vertical: 16),

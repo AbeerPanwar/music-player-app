@@ -1,3 +1,4 @@
+import 'package:client_/features/Auth/repository/auth_remote_repository.dart';
 import 'package:client_/theme/app_pallet.dart';
 import 'package:client_/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 controller: _nameController,
                 textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
+                  errorBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
                   hintText: 'Joe Adams',
                   hintStyle: TextStyle(
                     fontSize: 14,
@@ -56,6 +59,8 @@ class _SignUpFormState extends State<SignUpForm> {
                     fontFamily: 'Zain',
                   ),
                   suffixIcon: Icon(Icons.person, color: Pallete.geryGradiant2),
+                  focusedErrorBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
                   enabledBorder:
                       AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
                   focusedBorder:
@@ -92,6 +97,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     fontFamily: 'Zain',
                   ),
                   suffixIcon: Icon(Icons.email, color: Pallete.geryGradiant2),
+                  errorBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
+                  focusedErrorBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
                   enabledBorder:
                       AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
                   focusedBorder:
@@ -137,6 +146,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     onPressed: () =>
                         setState(() => _obscurePassword = !_obscurePassword),
                   ),
+                  errorBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
+                  focusedErrorBorder:
+                      AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
                   enabledBorder:
                       AppTheme.darkThemeMode.inputDecorationTheme.enabledBorder,
                   focusedBorder:
@@ -154,7 +167,15 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               const SizedBox(height: 35),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  if (_formKey.currentState!.validate()) {
+                    await AuthRemoteRepository().signup(
+                      name: _nameController.text,
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Pallete.geryGradiant2,
                   padding: const EdgeInsets.symmetric(vertical: 16),
