@@ -169,7 +169,7 @@ class _SignUpFormState extends State<SignUpForm> {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    await AuthRemoteRepository().signup(
+                    await AuthRemoteRepository().signUp(
                       name: _nameController.text,
                       email: _emailController.text,
                       password: _passwordController.text,

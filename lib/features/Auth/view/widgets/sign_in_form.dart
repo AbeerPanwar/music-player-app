@@ -1,3 +1,4 @@
+import 'package:client_/features/Auth/repository/auth_remote_repository.dart';
 import 'package:client_/theme/app_pallet.dart';
 import 'package:client_/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -122,8 +123,13 @@ class _SignInFormState extends State<SignInForm> {
               ),
               const SizedBox(height: 35),
               ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {}
+                onPressed: () async {
+                  if (_formKey.currentState!.validate()) {
+                    await AuthRemoteRepository().signIn(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Pallete.geryGradiant2,
