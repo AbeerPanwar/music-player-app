@@ -1,6 +1,6 @@
-import 'package:client_/features/Auth/view/widgets/sign_in_form.dart';
-import 'package:client_/features/Auth/view/widgets/sign_up_form.dart';
-import 'package:client_/theme/app_pallet.dart';
+import 'package:music_player/features/Auth/view/widgets/sign_in_form.dart';
+import 'package:music_player/features/Auth/view/widgets/sign_up_form.dart';
+import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:flutter/material.dart';
 
 class AuthScreen extends StatefulWidget {

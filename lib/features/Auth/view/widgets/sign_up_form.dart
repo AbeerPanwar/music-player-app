@@ -1,7 +1,8 @@
-import 'package:client_/features/Auth/repository/auth_remote_repository.dart';
-import 'package:client_/theme/app_pallet.dart';
-import 'package:client_/theme/theme.dart';
+import 'package:music_player/features/Auth/repository/auth_remote_repository.dart';
+import 'package:music_player/core/theme/app_pallet.dart';
+import 'package:music_player/core/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:fpdart/fpdart.dart' show Left, Right;
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -169,11 +170,18 @@ class _SignUpFormState extends State<SignUpForm> {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    await AuthRemoteRepository().signUp(
+                    final res = await AuthRemoteRepository().signUp(
                       name: _nameController.text,
                       email: _emailController.text,
                       password: _passwordController.text,
                     );
+
+                    final value = switch (res) {
+                      Left(value: final l) => l,
+                      Right(value: final r) => r.toString()
+                    };
+
+                    print(value);
                   }
                 },
                 style: ElevatedButton.styleFrom(

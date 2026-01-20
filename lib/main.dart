@@ -1,5 +1,5 @@
-import 'package:client_/features/splashscreen/splash_screen.dart';
-import 'package:client_/theme/theme.dart';
+import 'package:music_player/features/splashscreen/splash_screen.dart';
+import 'package:music_player/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {

@@ -1,4 +1,4 @@
-import 'package:client_/theme/app_pallet.dart';
+import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {

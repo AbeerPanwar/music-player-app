@@ -1,6 +1,6 @@
-import 'package:client_/features/Auth/repository/auth_remote_repository.dart';
-import 'package:client_/theme/app_pallet.dart';
-import 'package:client_/theme/theme.dart';
+import 'package:music_player/features/Auth/repository/auth_remote_repository.dart';
+import 'package:music_player/core/theme/app_pallet.dart';
+import 'package:music_player/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class SignInForm extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:client_/features/Auth/view/pages/auth_page.dart';
-import 'package:client_/theme/app_pallet.dart';
+import 'package:music_player/features/Auth/view/pages/auth_page.dart';
+import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
