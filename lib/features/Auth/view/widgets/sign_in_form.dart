@@ -1,3 +1,4 @@
+import 'package:fpdart/fpdart.dart' show Right, Left;
 import 'package:music_player/features/Auth/repository/auth_remote_repository.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:music_player/core/theme/theme.dart';
@@ -125,10 +126,15 @@ class _SignInFormState extends State<SignInForm> {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    await AuthRemoteRepository().signIn(
+                    final res = await AuthRemoteRepository().signIn(
                       email: _emailController.text,
                       password: _passwordController.text,
                     );
+
+                    final val = switch (res) {
+                      Left(value: final l) => l,
+                      Right(value: final r) => r,
+                    };
                   }
                 },
                 style: ElevatedButton.styleFrom(

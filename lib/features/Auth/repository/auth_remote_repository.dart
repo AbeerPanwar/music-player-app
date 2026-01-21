@@ -1,44 +1,55 @@
 import 'dart:convert';
-
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
+import 'package:music_player/core/constants/server_constants.dart';
+import 'package:music_player/core/failure/failure.dart';
+import 'package:music_player/features/Auth/model/user_model.dart';
 
 class AuthRemoteRepository {
-  Future<Either<String, Map<String, dynamic>>> signUp({
+  Future<Either<AppFailure, UserModel>> signUp({
     required String name,
     required String email,
     required String password,
   }) async {
     try {
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/auth/signup'),
+        Uri.parse('${ServerConstants.serverURL}/auth/signup'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'name': name, 'email': email, 'password': password}),
       );
 
+      final resBodyMap = jsonDecode(response.body) as Map<String, dynamic>;
+
       if (response.statusCode != 201) {
-        return left(response.body);
+        return left(AppFailure(resBodyMap['detail']));
       }
-      final user = jsonDecode(response.body) as Map<String, dynamic>;
-      return right(user);
-      
+
+      return right(UserModel.fromMap(resBodyMap));
     } catch (e) {
-      return left(e.toString());
+      return left(AppFailure(e.toString()));
     }
   }
 
-  Future<void> signIn({required String email, required String password}) async {
+  Future<Either<AppFailure, UserModel>> signIn({
+    required String email,
+    required String password,
+  }) async {
     try {
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/auth/login'),
+        Uri.parse('${ServerConstants.serverURL}/auth/login'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'email': email, 'password': password}),
       );
 
-      print(response.body);
-      print(response.statusCode);
+      final resBodyMap = jsonDecode(response.body) as Map<String, dynamic>;
+
+      if (response.statusCode != 200) {
+        return left(AppFailure(resBodyMap['detail']));
+      }
+
+      return right(UserModel.fromMap(resBodyMap));
     } catch (e) {
-      print(e);
+      return left(AppFailure(e.toString()));
     }
   }
 }

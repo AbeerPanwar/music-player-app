@@ -176,12 +176,10 @@ class _SignUpFormState extends State<SignUpForm> {
                       password: _passwordController.text,
                     );
 
-                    final value = switch (res) {
+                    final val = switch (res) {
                       Left(value: final l) => l,
-                      Right(value: final r) => r.toString()
+                      Right(value: final r) => r,
                     };
-
-                    print(value);
                   }
                 },
                 style: ElevatedButton.styleFrom(
