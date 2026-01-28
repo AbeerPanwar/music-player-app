@@ -86,7 +86,7 @@ class _AuthScreenState extends State<AuthScreen>
                       _tabController.index == 0
                           ? 'To get started, please sign in using your username and password.'
                           : 'To get started, please sign up inputing below fields information.',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
                         color: Pallete.geryGradiant2,
@@ -105,7 +105,7 @@ class _AuthScreenState extends State<AuthScreen>
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: TabBar(
-                          overlayColor: WidgetStatePropertyAll(
+                          overlayColor: const WidgetStatePropertyAll(
                             Pallete.backgroundColor,
                           ),
                           controller: _tabController,
@@ -116,7 +116,7 @@ class _AuthScreenState extends State<AuthScreen>
                           dividerColor: Pallete.backgroundColor,
                           indicatorSize: TabBarIndicatorSize.tab,
                           labelColor: Pallete.gradient1,
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Zain',
                           ),

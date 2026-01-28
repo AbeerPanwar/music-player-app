@@ -15,21 +15,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    Future.delayed(Duration(microseconds: 400), () {
+    Future.delayed(const Duration(microseconds: 400), () {
       setState(() {
         _isDotCenter = !_isDotCenter;
       });
     });
-    Future.delayed(Duration(milliseconds: 520), () {
+    Future.delayed(const Duration(milliseconds: 520), () {
       setState(() {
         _isScaleDot = !_isScaleDot;
-        Future.delayed(Duration(milliseconds: 600), () {
+        Future.delayed(const Duration(milliseconds: 600), () {
           setState(() {
             Navigator.push(
               context,
               PageRouteBuilder(
                 pageBuilder: (context, animation, secondaryAnimation) =>
-                    AuthScreen(),
+                    const AuthScreen(),
                 transitionsBuilder:
                     (context, animation, secondaryAnimation, child) =>
                         FadeTransition(
@@ -60,15 +60,15 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Center(
               child: AnimatedScale(
-                duration: Duration(milliseconds: 600),
-                curve: Cubic(0.58, -0.3, 0.32, 1),
+                duration: const Duration(milliseconds: 600),
+                curve: const Cubic(0.58, -0.3, 0.32, 1),
                 scale: _isScaleDot ? 12 : 1,
                 child: CircleAvatar(
                   radius: 48,
                   backgroundColor: Pallete.gradient1,
                   child: _isScaleDot
                       ? null
-                      : Center(
+                      : const Center(
                           child: CircleAvatar(
                             radius: 12,
                             backgroundColor: Colors.black,
@@ -78,13 +78,13 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             AnimatedPositioned(
-              duration: Duration(milliseconds: 500),
-              curve: Cubic(0.8, -1.2, 0.265, 1),
+              duration: const Duration(milliseconds: 500),
+              curve: const Cubic(0.8, -1.2, 0.265, 1),
               left:
                   (MediaQuery.of(context).size.width / 2) -
                   12 -
                   (_isDotCenter ? 0 : 80),
-              child: CircleAvatar(radius: 12, backgroundColor: Pallete.gradient1),
+              child: const CircleAvatar(radius: 12, backgroundColor: Pallete.gradient1),
             ),
           ],
         ),

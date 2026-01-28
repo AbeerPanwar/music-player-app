@@ -4,7 +4,7 @@ import 'package:music_player/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(ProviderScope(child: const MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
