@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:music_player/core/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:music_player/core/utils.dart';
 import 'package:music_player/core/widgets/loader.dart';
 import 'package:music_player/features/Auth/viewmodel/auth_viewmodel.dart';
 
@@ -35,21 +36,11 @@ class _SignInFormState extends ConsumerState<SignInForm> {
           //TODO: Navigate to home page
           // Navigator.push(
           //   context,
-          //   MaterialPageRoute(builder: (context) => const AuthScreen()),
+          //   MaterialPageRoute(builder: (context) => const HomeScreen()),
           // );
         },
         error: (error, st) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Text(
-                  error.toString(),
-                  style: const TextStyle(color: Pallete.backgroundColor),
-                ),
-                backgroundColor: Pallete.geryGradiant2,
-              ),
-            );
+          showSnackbar(context, error.toString());
         },
         loading: () {},
       );

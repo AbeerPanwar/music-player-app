@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:music_player/core/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:music_player/core/utils.dart';
 import 'package:music_player/core/widgets/loader.dart';
 import 'package:music_player/features/Auth/view/pages/auth_page.dart';
 import 'package:music_player/features/Auth/viewmodel/auth_viewmodel.dart';
@@ -37,17 +38,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
     ref.listen(authViewModelProvider, (_, next) {
       next?.when(
         data: (data) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              const SnackBar(
-                content: Text(
-                  'Account Created Succesfully! Please Signin..',
-                  style: TextStyle(color: Pallete.backgroundColor),
-                ),
-                backgroundColor: Pallete.geryGradiant2,
-              ),
-            );
+          showSnackbar(context, 'Account Created Succesfully! Please Signin..');
           //TODO: animate the navigation
           Navigator.push(
             context,
@@ -55,17 +46,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
           );
         },
         error: (error, st) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Text(
-                  error.toString(),
-                  style: const TextStyle(color: Pallete.backgroundColor),
-                ),
-                backgroundColor: Pallete.geryGradiant2,
-              ),
-            );
+          showSnackbar(context, error.toString());
         },
         loading: () {},
       );
