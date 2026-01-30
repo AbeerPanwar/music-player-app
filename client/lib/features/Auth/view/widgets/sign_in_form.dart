@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:music_player/core/utils.dart';
 import 'package:music_player/core/widgets/loader.dart';
 import 'package:music_player/features/Auth/viewmodel/auth_viewmodel.dart';
+import 'package:flutter/services.dart';
 
 class SignInForm extends ConsumerStatefulWidget {
   const SignInForm({super.key});
@@ -167,6 +168,7 @@ class _SignInFormState extends ConsumerState<SignInForm> {
                     const SizedBox(height: 35),
                     ElevatedButton(
                       onPressed: () async {
+                        HapticFeedback.selectionClick();
                         if (_formKey.currentState!.validate()) {
                           await ref
                               .read(authViewModelProvider.notifier)

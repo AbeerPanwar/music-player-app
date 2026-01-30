@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:music_player/core/theme/theme.dart';
@@ -224,6 +225,7 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
                     const SizedBox(height: 35),
                     ElevatedButton(
                       onPressed: () async {
+                        HapticFeedback.selectionClick();
                         if (_formKey.currentState!.validate()) {
                           await ref
                               .read(authViewModelProvider.notifier)
