@@ -1,3 +1,4 @@
+import os
 import uuid
 import bcrypt
 from fastapi import Depends, HTTPException
@@ -7,6 +8,8 @@ from pydantic_schemas.user_create import UserCreate
 from fastapi import APIRouter
 from sqlalchemy.orm import Session
 from pydantic_schemas.user_login import UserLogin
+import jwt
+
 
 router = APIRouter()
 
@@ -37,4 +40,10 @@ def login_user(user: UserLogin, db: Session = Depends(get_db)):
     if not is_match :
         raise HTTPException(400, "Incorrect Password!")
     
-    return user_db
+    secret = os.getenv("PASSWORD_KEY")
+    if not secret:
+        print("PASSWORD_KEY missing")
+        
+    token = jwt.encode({"id": user_db.id}, secret)
+
+    return {"token": token, "user": user_db}

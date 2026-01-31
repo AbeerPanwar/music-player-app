@@ -1,3 +1,11 @@
-server/venv/
-server/.venv/
-server/__pycache__/
+#python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+#environment
+server/.env
+
+#vscode
+.vscode/
