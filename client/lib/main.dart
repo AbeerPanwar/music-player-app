@@ -1,10 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:music_player/features/Auth/viewmodel/auth_viewmodel.dart';
 import 'package:music_player/features/splashscreen/splash_screen.dart';
 import 'package:music_player/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const ProviderScope(child: MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final container = ProviderContainer();
+  await container.read(authViewModelProvider.notifier).initSharedPrefrences();
+
+  runApp(UncontrolledProviderScope(container: container, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
