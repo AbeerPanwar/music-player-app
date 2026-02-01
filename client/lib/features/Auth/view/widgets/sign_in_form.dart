@@ -6,6 +6,7 @@ import 'package:music_player/core/utils.dart';
 import 'package:music_player/core/widgets/loader.dart';
 import 'package:music_player/features/Auth/viewmodel/auth_viewmodel.dart';
 import 'package:flutter/services.dart';
+import 'package:music_player/features/Home/view/pages/home_screen.dart';
 
 class SignInForm extends ConsumerStatefulWidget {
   const SignInForm({super.key});
@@ -29,16 +30,18 @@ class _SignInFormState extends ConsumerState<SignInForm> {
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = ref.watch(authViewModelProvider)?.isLoading == true;
+    final isLoading = ref.watch(
+      authViewModelProvider.select((val) => val?.isLoading == true),
+    );
 
     ref.listen(authViewModelProvider, (_, next) {
       next?.when(
         data: (data) {
-          //TODO: Navigate to home page
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const HomeScreen()),
-          // );
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            (_) => false,
+          );
         },
         error: (error, st) {
           showSnackbar(context, error.toString());

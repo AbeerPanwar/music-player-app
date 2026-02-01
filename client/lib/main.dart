@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:music_player/core/providers/current_user_notifier.dart';
 import 'package:music_player/features/Auth/viewmodel/auth_viewmodel.dart';
 import 'package:music_player/features/splashscreen/splash_screen.dart';
 import 'package:music_player/core/theme/theme.dart';
@@ -8,20 +9,22 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final container = ProviderContainer();
   await container.read(authViewModelProvider.notifier).initSharedPrefrences();
-
+  await container.read(authViewModelProvider.notifier).getData();
+  
   runApp(UncontrolledProviderScope(container: container, child: const MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentUser = ref.watch(currentUserNotifierProvider);
     return MaterialApp(
       title: 'Nothing Music',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkThemeMode,
-      home: const SplashScreen(),
+      home:  SplashScreen(currentUser: currentUser,),
     );
   }
 }

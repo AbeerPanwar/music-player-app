@@ -1,9 +1,12 @@
+import 'package:music_player/features/Auth/model/user_model.dart';
 import 'package:music_player/features/Auth/view/pages/auth_page.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:flutter/material.dart';
+import 'package:music_player/features/Home/view/pages/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  final UserModel? currentUser;
+  const SplashScreen({required this.currentUser,super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -15,6 +18,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
+    super.initState();
+
     Future.delayed(const Duration(microseconds: 400), () {
       setState(() {
         _isDotCenter = !_isDotCenter;
@@ -29,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
               context,
               PageRouteBuilder(
                 pageBuilder: (context, animation, secondaryAnimation) =>
-                    const AuthScreen(),
+                    widget.currentUser == null ? const AuthScreen() : const HomeScreen(),
                 transitionsBuilder:
                     (context, animation, secondaryAnimation, child) =>
                         FadeTransition(
