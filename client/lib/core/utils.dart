@@ -8,7 +8,10 @@ void showSnackbar(BuildContext context, String content) {
       SnackBar(
         content: Text(
           content,
-          style: const TextStyle(color: Pallete.backgroundColor),
+          style: const TextStyle(
+            color: Pallete.backgroundColor,
+            fontFamily: 'Zain',
+          ),
         ),
         backgroundColor: Pallete.geryGradiant2,
       ),

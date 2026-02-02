@@ -3,10 +3,11 @@ import 'package:music_player/features/Auth/view/pages/auth_page.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/features/Home/view/pages/home_screen.dart';
+import 'package:music_player/features/Home/view/pages/upload_song_page.dart';
 
 class SplashScreen extends StatefulWidget {
   final UserModel? currentUser;
-  const SplashScreen({required this.currentUser,super.key});
+  const SplashScreen({required this.currentUser, super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -30,11 +31,13 @@ class _SplashScreenState extends State<SplashScreen> {
         _isScaleDot = !_isScaleDot;
         Future.delayed(const Duration(milliseconds: 600), () {
           setState(() {
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
               PageRouteBuilder(
                 pageBuilder: (context, animation, secondaryAnimation) =>
-                    widget.currentUser == null ? const AuthScreen() : const HomeScreen(),
+                    widget.currentUser == null
+                    ? const AuthScreen()
+                    : const UploadSongPage(),
                 transitionsBuilder:
                     (context, animation, secondaryAnimation, child) =>
                         FadeTransition(
@@ -45,6 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           child: child,
                         ),
               ),
+              (_) => false,
             );
           });
         });
@@ -89,7 +93,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   (MediaQuery.of(context).size.width / 2) -
                   12 -
                   (_isDotCenter ? 0 : 80),
-              child: const CircleAvatar(radius: 12, backgroundColor: Pallete.gradient1),
+              child: const CircleAvatar(
+                radius: 12,
+                backgroundColor: Pallete.gradient1,
+              ),
             ),
           ],
         ),
