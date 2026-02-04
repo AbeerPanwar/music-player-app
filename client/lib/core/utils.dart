@@ -23,26 +23,42 @@ void showSnackbar(BuildContext context, String content) {
 
 Future<File?> imagePicker() async {
   try {
-    final filePickerRes = await FilePicker.platform.pickFiles(type: FileType.image);
+    final filePickerRes = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+    );
 
-    if(filePickerRes != null) {
+    if (filePickerRes != null) {
       return File(filePickerRes.files.first.xFile.path);
     }
     return null;
-  } catch(e) {
+  } catch (e) {
     return null;
   }
 }
 
 Future<File?> audioPicker() async {
   try {
-    final filePickerRes = await FilePicker.platform.pickFiles(type: FileType.audio);
+    final filePickerRes = await FilePicker.platform.pickFiles(
+      type: FileType.audio,
+    );
 
-    if(filePickerRes != null) {
+    if (filePickerRes != null) {
       return File(filePickerRes.files.first.xFile.path);
     }
     return null;
-  } catch(e) {
+  } catch (e) {
     return null;
   }
+}
+
+Color lighten(Color color, [double amount = .1]) {
+  final hsl = HSLColor.fromColor(color);
+  final hslLight = hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+  return hslLight.toColor();
+}
+
+Color darken(Color color, [double amount = .1]) {
+  final hsl = HSLColor.fromColor(color);
+  final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+  return hslDark.toColor();
 }

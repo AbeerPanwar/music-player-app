@@ -2,6 +2,7 @@ import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
+import 'package:music_player/core/utils.dart';
 
 class AudioWave extends StatefulWidget {
   final String path;
@@ -47,18 +48,24 @@ class _AudioWaveState extends State<AudioWave> {
         IconButton(
           onPressed: playAndPause,
           icon: playerController.playerState.isPlaying
-              ? const Icon(CupertinoIcons.pause_solid)
-              : const Icon(CupertinoIcons.play_arrow_solid),
+              ? Icon(
+                  CupertinoIcons.pause_solid,
+                  color: lighten(widget.liveColor, 0.2),
+                )
+              : Icon(
+                  CupertinoIcons.play_arrow_solid,
+                  color: lighten(widget.liveColor, 0.2),
+                ),
         ),
         Expanded(
           child: AudioFileWaveforms(
-            size: const Size(double.infinity, 100),
+            size: const Size(double.infinity, 80),
             playerController: playerController,
             playerWaveStyle: PlayerWaveStyle(
               spacing: 5,
               showSeekLine: false,
               fixedWaveColor: Pallete.inactiveBottomBarItemColor,
-              liveWaveColor: widget.liveColor,
+              liveWaveColor: lighten(widget.liveColor, 0.2),
             ),
           ),
         ),

@@ -2,7 +2,6 @@ import 'package:music_player/features/Auth/model/user_model.dart';
 import 'package:music_player/features/Auth/view/pages/auth_page.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:flutter/material.dart';
-import 'package:music_player/features/Home/view/pages/home_screen.dart';
 import 'package:music_player/features/Home/view/pages/upload_song_page.dart';
 
 class SplashScreen extends StatefulWidget {
