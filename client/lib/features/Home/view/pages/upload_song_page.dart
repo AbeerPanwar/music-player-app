@@ -1,9 +1,12 @@
+import 'dart:io' show File;
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
+import 'package:music_player/core/utils.dart';
+import 'package:music_player/features/Home/view/widgets/audio_wave.dart';
 
 class UploadSongPage extends ConsumerStatefulWidget {
   const UploadSongPage({super.key});
@@ -16,6 +19,28 @@ class _UploadSongPageState extends ConsumerState<UploadSongPage> {
   final _songNameController = TextEditingController();
   final _artistNameController = TextEditingController();
   Color selectedColor = Pallete.gradient1;
+  File? selectedImage;
+  File? selectedAudio;
+
+  void selectImage() async {
+    HapticFeedback.lightImpact();
+    final pickedImage = await imagePicker();
+    if (pickedImage != null) {
+      setState(() {
+        selectedImage = pickedImage;
+      });
+    }
+  }
+
+  void selectAudio() async {
+    HapticFeedback.lightImpact();
+    final pickedAudio = await audioPicker();
+    if (pickedAudio != null) {
+      setState(() {
+        selectedAudio = pickedAudio;
+      });
+    }
+  }
 
   @override
   void dispose() {
@@ -55,7 +80,9 @@ class _UploadSongPageState extends ConsumerState<UploadSongPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.grey.shade800, Colors.black12, Colors.black54],
+            colors: selectedColor != Pallete.gradient1
+                ? [selectedColor, Colors.black54]
+                : [Colors.grey.shade800, Colors.black12, Colors.black54],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -66,52 +93,73 @@ class _UploadSongPageState extends ConsumerState<UploadSongPage> {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 150,
                     width: double.infinity,
-                    child: DottedBorder(
-                      options: RoundedRectDottedBorderOptions(
-                        radius: Radius.circular(10),
-                        strokeCap: StrokeCap.round,
-                        color: Pallete.geryGradiant2,
-                        dashPattern: [10, 3],
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.folder_open, size: 40),
-                            SizedBox(height: 10),
-                            Text(
-                              'Select the thumbnail for your song',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'Zain',
+                    child: GestureDetector(
+                      onTap: selectImage,
+                      child: selectedImage != null
+                          ? SizedBox(
+                              height: 150,
+                              width: double.infinity,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.file(
+                                  selectedImage!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            )
+                          : const DottedBorder(
+                              options: RoundedRectDottedBorderOptions(
+                                radius: Radius.circular(10),
+                                strokeCap: StrokeCap.round,
+                                color: Pallete.geryGradiant2,
+                                dashPattern: [10, 3],
+                              ),
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.folder_open, size: 40),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      'Select the thumbnail for your song',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'Zain',
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ],
-                        ),
-                      ),
                     ),
                   ),
                   const SizedBox(height: 40),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Pick Song',
-                      hintStyle: const TextStyle(
-                        fontSize: 14,
-                        color: Pallete.whiteColor,
-                        fontFamily: 'Zain',
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Pallete.geryGradiant2,
-                          width: 1,
+                  selectedAudio != null
+                      ? AudioWave(
+                          path: selectedAudio!.path,
+                          liveColor: selectedColor,
+                        )
+                      : TextField(
+                          onTap: selectAudio,
+                          decoration: InputDecoration(
+                            hintText: 'Pick Song',
+                            hintStyle: const TextStyle(
+                              fontSize: 14,
+                              color: Pallete.whiteColor,
+                              fontFamily: 'Zain',
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Pallete.geryGradiant2,
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
                   const SizedBox(height: 25),
                   TextField(
                     controller: _songNameController,
