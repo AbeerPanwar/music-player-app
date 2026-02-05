@@ -46,6 +46,7 @@ dependencies:
   audio_waveforms: ^2.0.2
   adaptive_platform_ui: ^0.1.101
   liquid_glass_renderer: ^0.2.0-dev.4
+  flutter_colorpicker: ^1.1.0
 
 dev_dependencies:
   flutter_test:
