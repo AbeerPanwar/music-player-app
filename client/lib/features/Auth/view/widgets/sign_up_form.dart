@@ -58,7 +58,10 @@ class _SignUpFormState extends ConsumerState<SignUpForm> {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: isLoading
-          ? const Loader()
+          ? const Loader(
+              color: Pallete.gradient1,
+              backgroundColor: Pallete.transparentColor,
+            )
           : Form(
               key: _formKey,
               child: SingleChildScrollView(

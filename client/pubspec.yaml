@@ -47,6 +47,9 @@ dependencies:
   adaptive_platform_ui: ^0.1.101
   liquid_glass_renderer: ^0.2.0-dev.4
   flutter_colorpicker: ^1.1.0
+  expressive_loading_indicator: ^0.0.1
+  material_shapes: ^0.0.2
+  material_new_shapes: ^1.0.0
 
 dev_dependencies:
   flutter_test:

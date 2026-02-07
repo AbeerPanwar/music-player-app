@@ -1,29 +1,55 @@
+import 'dart:io';
+import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:music_player/core/constants/server_constants.dart';
+import 'package:music_player/core/failure/failure.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+part 'home_repository.g.dart';
+
+@riverpod
+HomeRepository homeRepository(HomeRepositoryRef ref) {
+  return HomeRepository();
+}
 
 class HomeRepository {
-  Future<void> uploadSong(String? songPath, String? imagePath) async {
-    final request = http.MultipartRequest(
-      'POST',
-      Uri.parse('${ServerConstants.serverURL}/song/upload'),
-    );
+  Future<Either<AppFailure, String>> uploadSong({
+    required File selectedAudio,
+    required File selectedThumbnail,
+    required String songName,
+    required String artist,
+    required String hexCode,
+    required String token,
+  }) async {
+    try {
+      final request = http.MultipartRequest(
+        'POST',
+        Uri.parse('${ServerConstants.serverURL}/song/upload'),
+      );
 
-    request
-      ..files.addAll([
-        await http.MultipartFile.fromPath('song', songPath!),
-        await http.MultipartFile.fromPath('thumbnail', imagePath!),
-      ])
-      ..fields.addAll({
-        'artist': 'Abeer',
-        'song_name': 'whats my name',
-        'hex_code': 'FFFFFF',
-      })
-      ..headers.addAll({
-        'x-auth-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3NzE2OTFkLTIzN2MtNDIzYS1hZjkyLTVlNTEyM2YxMDJkMyJ9.sSFOa73k7F6fi9onnFw2SIUl0xyrwHpfwbySoo8-EjQ',
-      });
+      request
+        ..files.addAll([
+          await http.MultipartFile.fromPath('song', selectedAudio.path),
+          await http.MultipartFile.fromPath(
+            'thumbnail',
+            selectedThumbnail.path,
+          ),
+        ])
+        ..fields.addAll({
+          'artist': artist,
+          'song_name': songName,
+          'hex_code': hexCode,
+        })
+        ..headers.addAll({'x-auth-token': token});
 
-    final res = await request.send();
-    print(res);
+      final res = await request.send();
+
+      if (res.statusCode != 201) {
+        return left(AppFailure(await res.stream.bytesToString()));
+      }
+
+      return right(await res.stream.bytesToString());
+    } catch (e) {
+      return left(AppFailure(e.toString()));
+    }
   }
 }

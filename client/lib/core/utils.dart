@@ -62,3 +62,11 @@ Color darken(Color color, [double amount = .1]) {
   final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
   return hslDark.toColor();
 }
+
+String rgbToHex(Color color) {
+  return '${(color.r * 255).round().toRadixString(16).padLeft(2, '0')}${(color.g * 255).round().toRadixString(16).padLeft(2, '0')}${(color.b * 255).round().toRadixString(16).padLeft(2, '0')}';
+}
+
+Color hexToColor(String hex) {
+  return Color(int.parse(hex, radix: 16) + 0xFF000000);
+}

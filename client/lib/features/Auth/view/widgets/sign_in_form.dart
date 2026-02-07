@@ -53,7 +53,10 @@ class _SignInFormState extends ConsumerState<SignInForm> {
     return Padding(
       padding: const EdgeInsets.all(22),
       child: isLoading
-          ? const Loader()
+          ? const Loader(
+              color: Pallete.gradient1,
+              backgroundColor: Pallete.transparentColor,
+            )
           : Form(
               key: _formKey,
               child: SingleChildScrollView(
