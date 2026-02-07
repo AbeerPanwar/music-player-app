@@ -2,7 +2,7 @@ import 'package:music_player/features/Auth/model/user_model.dart';
 import 'package:music_player/features/Auth/view/pages/auth_page.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:flutter/material.dart';
-import 'package:music_player/features/Home/view/pages/upload_song_page.dart';
+import 'package:music_player/features/Home/view/pages/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   final UserModel? currentUser;
@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(milliseconds: 520), () {
       setState(() {
         _isScaleDot = !_isScaleDot;
-        Future.delayed(const Duration(milliseconds: 600), () {
+        Future.delayed(const Duration(milliseconds: 540), () {
           setState(() {
             Navigator.pushAndRemoveUntil(
               context,
@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 pageBuilder: (context, animation, secondaryAnimation) =>
                     widget.currentUser == null
                     ? const AuthScreen()
-                    : const UploadSongPage(),
+                    : const HomeScreen(),
                 transitionsBuilder:
                     (context, animation, secondaryAnimation, child) =>
                         FadeTransition(

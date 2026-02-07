@@ -1,3 +1,3 @@
 class ServerConstants {
-  static String serverURL = 'http://10.123.250.173:8000';
+  static String serverURL = 'http://192.168.1.35:8000';
 }

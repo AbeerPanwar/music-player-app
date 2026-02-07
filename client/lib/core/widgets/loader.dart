@@ -28,7 +28,8 @@ class Loader extends StatelessWidget {
           polygons: [
             MaterialShapes.softBurst,
             MaterialShapes.pentagon,
-            MaterialShapes.pill,
+            MaterialShapes.cookie4Sided,
+            MaterialShapes.oval,
           ],
         ),
       ),
