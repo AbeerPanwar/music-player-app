@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:music_player/core/utils.dart';
+import 'package:music_player/features/Home/repository/home_repository.dart';
 import 'package:music_player/features/Home/view/widgets/audio_wave.dart';
 
 class UploadSongPage extends ConsumerStatefulWidget {
@@ -62,8 +63,12 @@ class _UploadSongPageState extends ConsumerState<UploadSongPage> {
         backgroundColor: Colors.transparent,
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               HapticFeedback.lightImpact();
+              await HomeRepository().uploadSong(
+                selectedAudio?.path,
+                selectedImage?.path,
+              );
             },
             icon: const LiquidGlassLayer(
               child: LiquidStretch(
