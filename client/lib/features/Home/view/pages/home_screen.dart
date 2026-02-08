@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
@@ -5,6 +6,7 @@ import 'package:music_player/features/Home/view/pages/library_page.dart';
 import 'package:music_player/features/Home/view/pages/profile_page.dart';
 import 'package:music_player/features/Home/view/pages/search_page.dart';
 import 'package:music_player/features/Home/view/pages/songs_page.dart';
+import 'package:music_player/features/Home/view/widgets/music_slab.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -35,37 +37,37 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           },
           items: [
             SalomonBottomBarItem(
-              icon: Image.asset(
-                currentIndex == 0
-                    ? 'lib/core/assets/images/home_filled.png'
-                    : 'lib/core/assets/images/home_unfilled.png',
-                scale: 1.1,
+              icon: Icon(
+                currentIndex == 0 ? Icons.home_sharp : Icons.home_outlined,
+                size: 27,
                 color: currentIndex == 0
-                    ? Pallete.whiteColor
+                    ? Pallete.gradient1
                     : Pallete.greyColor,
               ),
               title: const Text("Home"),
               selectedColor: Pallete.gradient1,
             ),
             SalomonBottomBarItem(
-              icon: Image.asset(
+              icon: Icon(
                 currentIndex == 1
-                    ? 'lib/core/assets/images/search_filled.png'
-                    : 'lib/core/assets/images/search_unfilled.png',
-                scale: 1,
+                    ? CupertinoIcons.search_circle_fill
+                    : CupertinoIcons.search_circle,
                 color: currentIndex == 1
-                    ? Pallete.whiteColor
+                    ? Pallete.gradient1
                     : Pallete.greyColor,
+                size: 27,
               ),
               title: const Text("Search"),
               selectedColor: Pallete.gradient1,
             ),
             SalomonBottomBarItem(
-              icon: Image.asset(
-                'lib/core/assets/images/library.png',
-                scale: 1,
+              icon: Icon(
+                currentIndex == 2
+                    ? CupertinoIcons.music_albums_fill
+                    : CupertinoIcons.music_albums,
+                size: 27,
                 color: currentIndex == 2
-                    ? Pallete.whiteColor
+                    ? Pallete.gradient1
                     : Pallete.greyColor,
               ),
               title: const Text("Library"),
@@ -73,11 +75,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ),
             SalomonBottomBarItem(
               icon: Icon(
-                currentIndex == 3 ? Icons.person : Icons.person_outline,
+                CupertinoIcons.profile_circled,
                 color: currentIndex == 3
-                    ? Pallete.whiteColor
+                    ? Pallete.gradient1
                     : Pallete.greyColor,
-                size: 27,
+                size: 28,
               ),
               title: const Text("Profile"),
               selectedColor: Pallete.gradient1,
@@ -97,7 +99,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: pages[currentIndex],
+        child: Stack(
+          children: [
+            pages[currentIndex],
+            const Positioned(bottom: 90, child: MusicSlab()),
+          ],
+        ),
       ),
     );
   }
