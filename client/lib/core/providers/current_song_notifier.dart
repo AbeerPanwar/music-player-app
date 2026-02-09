@@ -42,4 +42,12 @@ class CurrentSongNotifier extends _$CurrentSongNotifier {
     isPlaying = !isPlaying;
     state = state?.copyWith(hex_code: state?.hex_code);
   }
+
+  void seek(double val) {
+    audioPlayer!.seek(
+      Duration(
+        milliseconds: (val * audioPlayer!.duration!.inMilliseconds).toInt(),
+      ),
+    );
+  }
 }

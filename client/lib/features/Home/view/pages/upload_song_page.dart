@@ -8,7 +8,6 @@ import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:music_player/core/utils.dart';
 import 'package:music_player/core/widgets/loader.dart';
-import 'package:music_player/features/Home/view/pages/home_screen.dart';
 import 'package:music_player/features/Home/view/widgets/audio_wave.dart';
 import 'package:music_player/features/Home/viewmodel/home_viewmodel.dart';
 
@@ -83,13 +82,6 @@ class _UploadSongPageState extends ConsumerState<UploadSongPage> {
                       artist: _artistNameController.text.trim(),
                       selectedColor: selectedColor,
                     );
-                Navigator.pop(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        const HomeScreen(),
-                  ),
-                );
               } else {
                 showSnackbar(context, 'Missing Fields !!');
               }

@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:music_player/core/providers/current_user_notifier.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
-import 'package:music_player/core/utils.dart';
 import 'package:music_player/features/Home/view/pages/upload_song_page.dart';
 
 class ProfilePage extends ConsumerWidget {
@@ -23,17 +22,17 @@ class ProfilePage extends ConsumerWidget {
               child: Container(
                 width: 100,
                 height: 100,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: lighten(Pallete.gradient2, 0.2),
+                  color: Pallete.gradient1,
                 ),
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
                       currnetUser!.name.substring(0, 1).toUpperCase(),
-                      style: TextStyle(
-                        color: darken(Pallete.gradient1, 0.2),
+                      style: const TextStyle(
+                        color: Pallete.cardColor,
                         fontFamily: 'Zain',
                         fontSize: 40,
                         fontWeight: FontWeight.bold,

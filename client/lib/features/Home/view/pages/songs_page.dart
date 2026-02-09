@@ -37,7 +37,7 @@ class SongsPage extends ConsumerWidget {
                       itemCount: songs.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        final song = songs[index];
+                        final song = songs.reversed.toList()[index];
                         return GestureDetector(
                           onTap: () {
                             HapticFeedback.lightImpact();
