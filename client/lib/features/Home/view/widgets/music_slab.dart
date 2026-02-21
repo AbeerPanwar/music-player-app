@@ -51,7 +51,8 @@ class MusicSlab extends ConsumerWidget {
         padding: const EdgeInsets.only(left: 10.0),
         child: Stack(
           children: [
-            Container(
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [

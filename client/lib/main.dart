@@ -1,16 +1,20 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
 import 'package:music_player/core/providers/current_user_notifier.dart';
 import 'package:music_player/features/Auth/viewmodel/auth_viewmodel.dart';
 import 'package:music_player/features/splashscreen/splash_screen.dart';
 import 'package:music_player/core/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final container = ProviderContainer();
   await container.read(authViewModelProvider.notifier).initSharedPrefrences();
   await container.read(authViewModelProvider.notifier).getData();
-  
+  final dir = await getApplicationDocumentsDirectory();
+  Hive.defaultDirectory = dir.path;
+
   runApp(UncontrolledProviderScope(container: container, child: const MyApp()));
 }
 
@@ -24,7 +28,7 @@ class MyApp extends ConsumerWidget {
       title: 'Nothing Music',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkThemeMode,
-      home:  SplashScreen(currentUser: currentUser,),
+      home: SplashScreen(currentUser: currentUser),
     );
   }
 }

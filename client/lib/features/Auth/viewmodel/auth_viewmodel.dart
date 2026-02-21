@@ -36,6 +36,7 @@ class AuthViewModel extends _$AuthViewModel {
       password: password,
     );
 
+    // ignore: unused_local_variable
     final val = switch (res) {
       Left(value: final l) => state = AsyncValue.error(
         l.message,
@@ -55,6 +56,7 @@ class AuthViewModel extends _$AuthViewModel {
       password: password,
     );
 
+    // ignore: unused_local_variable
     final val = switch (res) {
       Left(value: final l) => state = AsyncValue.error(
         l.message,
