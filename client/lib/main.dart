@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_player/core/providers/current_user_notifier.dart';
 import 'package:music_player/features/Auth/viewmodel/auth_viewmodel.dart';
 import 'package:music_player/features/splashscreen/splash_screen.dart';
@@ -8,6 +9,11 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
+    androidNotificationChannelName: 'Audio playback',
+    androidNotificationOngoing: true,
+  );
   final container = ProviderContainer();
   await container.read(authViewModelProvider.notifier).initSharedPrefrences();
   await container.read(authViewModelProvider.notifier).getData();
