@@ -452,10 +452,18 @@ packages:
     dependency: "direct main"
     description:
       name: hive
-      sha256: "10819524df282842ebae12870e2e0e9ebc3e5c4637bec741ad39b919c589cb20"
+      sha256: "8dcf6db979d7933da8217edcec84e9df1bdb4e4edc7fc77dbd5aa74356d6d941"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.0-dev.2"
+    version: "2.2.3"
+  hive_flutter:
+    dependency: "direct main"
+    description:
+      name: hive_flutter
+      sha256: dca1da446b1d808a51689fb5d0c6c9510c0a2ba01e22805d492c73b68e33eecc
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   hotreloader:
     dependency: transitive
     description:
@@ -496,22 +504,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
-  isar:
-    dependency: transitive
-    description:
-      name: isar
-      sha256: ebf74d87c400bd9f7da14acb31932b50c2407edbbd40930da3a6c2a8143f85a8
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.0-dev.14"
-  isar_flutter_libs:
-    dependency: "direct main"
-    description:
-      name: isar_flutter_libs
-      sha256: "04a3f4035e213ddb6e78d0132a7c80296a085c2088c2a761b4a42ee5add36983"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.0-dev.14"
   js:
     dependency: transitive
     description:
@@ -673,7 +665,7 @@ packages:
     source: hosted
     version: "1.9.1"
   path_provider:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: path_provider
       sha256: "50c5dd5b6e1aaf6fb3a78b33f6aa3afca52bf903a8a5298f53101fdaee55bbcd"

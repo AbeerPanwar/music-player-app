@@ -41,82 +41,86 @@ class SongsPage extends ConsumerWidget {
               bottom: 36,
               top: 16,
             ),
-            child: SizedBox(
-              height: 200,
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                ),
-                itemCount: recentlyPlayedSongs.length,
-                itemBuilder: (context, index) {
-                  final song = recentlyPlayedSongs[index];
-                  return GestureDetector(
-                    onTap: () {
-                      ref
-                          .watch(currentSongNotifierProvider.notifier)
-                          .updateSong(song);
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Pallete.cardColor,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 56,
+            child: recentlyPlayedSongs.isEmpty
+                ? const SizedBox(height: 1)
+                : SizedBox(
+                    height: 200,
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 3,
+                            crossAxisSpacing: 8,
+                            mainAxisSpacing: 8,
+                          ),
+                      itemCount: recentlyPlayedSongs.length,
+                      itemBuilder: (context, index) {
+                        final song = recentlyPlayedSongs.reversed
+                            .toList()[index];
+                        return GestureDetector(
+                          onTap: () {
+                            ref
+                                .watch(currentSongNotifierProvider.notifier)
+                                .updateSong(song);
+                          },
+                          child: Container(
                             decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(song.thumbnail_url),
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(6),
-                                bottomLeft: Radius.circular(6),
-                              ),
+                              color: Pallete.cardColor,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 56,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(song.thumbnail_url),
+                                      fit: BoxFit.cover,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(6),
+                                      bottomLeft: Radius.circular(6),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        song.song_name,
+                                        style: const TextStyle(
+                                          fontFamily: 'Zain',
+                                          fontSize: 14,
+                                          color: Pallete.whiteColor,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.fade,
+                                      ),
+                                    ),
+                                    Flexible(
+                                      child: Text(
+                                        song.artist,
+                                        style: const TextStyle(
+                                          fontFamily: 'Zain',
+                                          fontSize: 12,
+                                          color: Pallete.whiteColor,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.fade,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
-                          const SizedBox(width: 8),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  song.song_name,
-                                  style: const TextStyle(
-                                    fontFamily: 'Zain',
-                                    fontSize: 14,
-                                    color: Pallete.whiteColor,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.fade,
-                                ),
-                              ),
-                              Flexible(
-                                child: Text(
-                                  song.artist,
-                                  style: const TextStyle(
-                                    fontFamily: 'Zain',
-                                    fontSize: 12,
-                                    color: Pallete.whiteColor,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.fade,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-            ),
+                  ),
           ),
           const SizedBox(height: 15),
           const Padding(

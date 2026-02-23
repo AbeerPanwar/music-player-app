@@ -52,9 +52,8 @@ dependencies:
   material_new_shapes: ^1.0.0
   salomon_bottom_bar: ^3.3.2
   just_audio: ^0.10.5
-  hive: ^4.0.0-dev.2
-  isar_flutter_libs: ^4.0.0-dev.13
-  path_provider: ^2.1.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:
