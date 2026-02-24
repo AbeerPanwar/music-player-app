@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 import 'package:music_player/features/Home/model/fav_song_model.dart';
 

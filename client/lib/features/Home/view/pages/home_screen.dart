@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:music_player/features/Home/view/pages/library_page.dart';
-import 'package:music_player/features/Home/view/pages/profile_page.dart';
 import 'package:music_player/features/Home/view/pages/search_page.dart';
 import 'package:music_player/features/Home/view/pages/songs_page.dart';
 import 'package:music_player/features/Home/view/widgets/music_slab.dart';
@@ -18,17 +17,17 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   int currentIndex = 0;
-  final pages = const [SongsPage(), SearchPage(), LibraryPage(), ProfilePage()];
+  final pages = const [SongsPage(), SearchPage(), LibraryPage()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+        padding: const EdgeInsets.fromLTRB(36, 16, 36, 8),
         child: SalomonBottomBar(
           currentIndex: currentIndex,
-          margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+          margin: const EdgeInsets.fromLTRB(22, 8, 22, 0),
           itemPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           onTap: (value) {
             setState(() {
@@ -49,9 +48,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ),
             SalomonBottomBarItem(
               icon: Icon(
-                currentIndex == 1
-                    ? CupertinoIcons.search_circle_fill
-                    : CupertinoIcons.search_circle,
+                CupertinoIcons.search,
                 color: currentIndex == 1
                     ? Pallete.gradient1
                     : Pallete.greyColor,
@@ -71,17 +68,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     : Pallete.greyColor,
               ),
               title: const Text("Library"),
-              selectedColor: Pallete.gradient1,
-            ),
-            SalomonBottomBarItem(
-              icon: Icon(
-                CupertinoIcons.profile_circled,
-                color: currentIndex == 3
-                    ? Pallete.gradient1
-                    : Pallete.greyColor,
-                size: 28,
-              ),
-              title: const Text("Profile"),
               selectedColor: Pallete.gradient1,
             ),
           ],
