@@ -4,8 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:music_player/core/providers/current_song_notifier.dart';
+import 'package:music_player/core/providers/current_user_notifier.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:music_player/core/utils.dart';
+import 'package:music_player/features/Home/viewmodel/home_viewmodel.dart';
 
 class MusicPlayer extends ConsumerWidget {
   const MusicPlayer({super.key});
@@ -14,6 +16,9 @@ class MusicPlayer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentSong = ref.watch(currentSongNotifierProvider);
     final songNotifier = ref.watch(currentSongNotifierProvider.notifier);
+    final favorites = ref.watch(
+      currentUserNotifierProvider.select((data) => data!.favorites),
+    );
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -95,11 +100,25 @@ class MusicPlayer extends ConsumerWidget {
                       ),
                       const Expanded(child: SizedBox()),
                       IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          CupertinoIcons.heart,
-                          color: Pallete.whiteColor,
-                        ),
+                        onPressed: () async {
+                          HapticFeedback.selectionClick();
+                          await ref
+                              .read(homeViewModelProvider.notifier)
+                              .favoriteSong(songId: currentSong.id);
+                        },
+                        icon:
+                            favorites
+                                .where((fav) => fav.song_id == currentSong.id)
+                                .toList()
+                                .isNotEmpty
+                            ? const Icon(
+                                CupertinoIcons.heart_fill,
+                                color: Pallete.whiteColor,
+                              )
+                            : const Icon(
+                                CupertinoIcons.heart,
+                                color: Pallete.whiteColor,
+                              ),
                       ),
                     ],
                   ),

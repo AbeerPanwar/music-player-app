@@ -1,4 +1,4 @@
-import 'package:music_player/features/Auth/model/user_model.dart';
+import 'package:music_player/core/models/user_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'current_user_notifier.g.dart';

@@ -1,4 +1,4 @@
-import 'package:music_player/features/Auth/model/user_model.dart';
+import 'package:music_player/core/models/user_model.dart';
 import 'package:music_player/features/Auth/view/pages/auth_page.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:flutter/material.dart';

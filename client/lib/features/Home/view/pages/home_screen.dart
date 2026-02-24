@@ -97,6 +97,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
+            stops: const [0.0, 0.2, 1],
           ),
         ),
         child: Stack(

@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_player/core/providers/current_song_notifier.dart';
+import 'package:music_player/core/providers/current_user_notifier.dart';
 import 'package:music_player/core/theme/app_pallet.dart';
 import 'package:music_player/core/utils.dart';
 import 'package:music_player/features/Home/view/widgets/music_player.dart';
+import 'package:music_player/features/Home/viewmodel/home_viewmodel.dart';
 
 class MusicSlab extends ConsumerWidget {
   const MusicSlab({super.key});
@@ -14,6 +16,9 @@ class MusicSlab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentSong = ref.watch(currentSongNotifierProvider);
     final songNotifier = ref.read(currentSongNotifierProvider.notifier);
+    final favorites = ref.watch(
+      currentUserNotifierProvider.select((data) => data!.favorites),
+    );
 
     if (currentSong == null) {
       return const SizedBox();
@@ -117,11 +122,25 @@ class MusicSlab extends ConsumerWidget {
                   Row(
                     children: [
                       IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          CupertinoIcons.heart,
-                          color: Pallete.whiteColor,
-                        ),
+                        onPressed: () async {
+                          HapticFeedback.selectionClick();
+                          await ref
+                              .read(homeViewModelProvider.notifier)
+                              .favoriteSong(songId: currentSong.id);
+                        },
+                        icon:
+                            favorites
+                                .where((fav) => fav.song_id == currentSong.id)
+                                .toList()
+                                .isNotEmpty
+                            ? const Icon(
+                                CupertinoIcons.heart_fill,
+                                color: Pallete.whiteColor,
+                              )
+                            : const Icon(
+                                CupertinoIcons.heart,
+                                color: Pallete.whiteColor,
+                              ),
                       ),
                       IconButton(
                         onPressed: () {

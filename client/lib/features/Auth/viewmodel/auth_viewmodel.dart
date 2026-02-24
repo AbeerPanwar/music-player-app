@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart' show Left, Right;
 import 'package:music_player/core/providers/current_user_notifier.dart';
-import 'package:music_player/features/Auth/model/user_model.dart';
+import 'package:music_player/core/models/user_model.dart';
 import 'package:music_player/features/Auth/repository/auth_local_repository.dart';
 import 'package:music_player/features/Auth/repository/auth_remote_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

@@ -11,13 +11,17 @@ class SearchPage extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(16),
-          color: Pallete.geryGradiant3,
+          color: Pallete.cardColor,
         ),
         child: const Padding(
           padding: EdgeInsets.all(24.0),
           child: Text(
             'Feature Comming Soon...',
-            style: TextStyle(fontFamily: 'Zain', color: Pallete.gradient1),
+            style: TextStyle(
+              fontFamily: 'Zain',
+              color: Pallete.gradient1,
+              fontSize: 18,
+            ),
           ),
         ),
       ),
