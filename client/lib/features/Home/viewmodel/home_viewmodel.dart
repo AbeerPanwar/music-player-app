@@ -49,6 +49,7 @@ class HomeViewModel extends _$HomeViewModel {
       token: ref.read(currentUserNotifierProvider)!.token,
     );
 
+    // ignore: unused_local_variable
     final val = switch (res) {
       Left(value: final l) => state = AsyncValue.error(
         l.message,
@@ -56,8 +57,6 @@ class HomeViewModel extends _$HomeViewModel {
       ),
       Right(value: final r) => state = AsyncValue.data(r),
     };
-
-    print(val);
   }
 
   List<SongModel> getRecentlyPlayedSongs() {
