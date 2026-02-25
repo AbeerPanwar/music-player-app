@@ -45,43 +45,28 @@ This app allows users to discover songs, play music with a beautiful player UI, 
 
 ## 📱 Screenshots
 
-### Home Page
+<table>
+  <tr>
+    <td align="center"><b>Home Page</b></td>
+    <td align="center"><b>Music Player</b></td>
+     <td align="center"><b>Library Page</b></td>
+  </tr>
+  <tr>
+    <td><img src="assets/screenshots/home.jpeg" width="250"></td>
+    <td><img src="assets/screenshots/player.jpeg" width="250"></td>
+     <td><img src="assets/screenshots/library.jpeg" width="250"></td>
+  </tr>
+  
+  <tr>
+    <td align="center"><b>Upload Song Page</b></td>
+    <td align="center"><b>Notification Panel</b></td>
+  </tr>
+  <tr>
+    <td><img src="assets/screenshots/upload.jpeg" width="250"></td>
+    <td><img src="assets/screenshots/notification.jpeg" width="250"></td>
+  </tr>
+</table>
 
-Displays recently played songs and discover section with bottom music slab.
-
-![Home](assets/screenshots/home.jpg)
-
----
-
-### Music Player
-
-Full screen player with controls and dynamic background.
-
-![Player](assets/screenshots/player.jpg)
-
----
-
-### Library Page
-
-Liked songs collection.
-
-![Library](assets/screenshots/library.jpg)
-
----
-
-### Upload Song
-
-Upload songs with waveform preview and color picker.
-
-![Upload](assets/screenshots/upload.jpg)
-
----
-
-### Notification Panel
-
-Background playback notification controls.
-
-![Notification](assets/screenshots/notification.jpg)
 
 ---
 
